@@ -54,12 +54,12 @@
                 <div class="col-md-12 input-box">
                     <div class="login-con" style="display: block;">
                         <div class="login_top">
-                            <a href="javascript:void(0);">账号登录</a>
+                            <a href="javascript:void(0);" class="active">账号登录</a>
                             <span>|</span>
-                            <a href="javascript:void(0);" class="active">手机动态密码登录</a>
+                            <a href="javascript:void(0);">手机动态密码登录</a>
                         </div>
                         <div class="login_type">
-                            <div class="loginUser type_item" style="display:none">
+                            <div class="loginUser type_item" style="display:block">
                                 <div class="frame tel">
                                     <div class="tig">
                                         <span class="icon">
@@ -129,7 +129,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="loginMobile type_item" style="display: block">
+                            <div class="loginMobile type_item" style="display: none">
                                 <div class="frame tel">
                                     <div class="tig">
                                         <span class="icon">
@@ -163,18 +163,18 @@
                                             <i class="userIcon"></i>
                                         </span>
                                     </div>
-                                    <input type="text" class="input_item num_item" disabled>
+                                    <input type="text" class="num_item">
                                     <button class="getNum fr">获取短信验证码</button>
                                 </div>
                                 <div class="submit">
                                     <button>登录</button>
                                 </div>
                                 <div class="login_link clearfix">
-                                    <input type="checkbox" id="autoLogin">
+                                    <input type="checkbox" id="autoLogin" checked="false">
                                     <label for="autoLogin">自动登录</label>
 
                                     <a href="" class="fr">找回密码</a>
-                                    <a href="" class="fr">免费注册</a>
+                                    <a href="register.html" class="fr">免费注册</a>
                                 </div>
                                 <div class="parner clearfix">
                                     <span class="title fl">使用合作账号登录</span>
@@ -231,6 +231,18 @@
     <div class="container footer">
         <p class="copy">&copy;酒仙网 2011 jiuxian.com All Rights Reserved 京ICP备17043395号 京公网安备1101050188221</p>
         <p class="tig">购买前请确认达到法定饮酒年龄！酒仙网不销售任何含酒精产品给18岁以下人士！</p>
+    </div>
+    <div class="shadeCode" style="display:none;">
+        <div class="shadeBox">
+            <div class="shadeTop clearfix">
+                <span class="fl">提示</span>
+                <span class="fr close">×</span>
+            </div>
+            <div class="shadeBtm">
+                <p>短信验证码是:<em class="code">ABCD</em></p>
+                <button>自动填写</button>
+            </div>
+        </div>
     </div>
 </body>
 </html>

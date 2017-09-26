@@ -781,6 +781,135 @@ window.onload=function(){
 		floor[i].getElementsByClassName('frCen_r')[0].innerHTML=str[i];
 
 	}
+
+	//跨域搜索框提示信息
+	//http://list.jiuxian.com/assKeyWords.htm?callback=fn&wd=茅
+	var search_txt=document.getElementsByClassName('search_txt')[0];
+	var searchFinal=document.getElementsByClassName('searchFinal')[0];
+	var search_ul=searchFinal.getElementsByTagName('ul')[0];
+
+
+
+	search_txt.onkeyup=function(){
+		if(search_txt.value!='') {
+			searchFinal.style.display="block";
+			var script = document.createElement('script');
+			script.src = "http://list.jiuxian.com/assKeyWords.htm?wd="+this.value+"&callback=fun";
+			document.body.appendChild(script);
+		}else{
+			searchFinal.style.display="none";
+		}
+
+	}
+	var close_dot=document.getElementsByClassName('close_dot')[0];
+	close_dot.onclick=function(){
+		searchFinal.style.display="none";
+	}
+
+
+
+	/*是否登录*/
+	sideBarR=document.getElementsByClassName('sideBarR')[0];
+	var sidevip=sideBarR.getElementsByClassName('vip')[0];
+	if(window.location.hash){
+		sidevip.style.display="block";
+		sidevip.children[0].children[0].innerHTML=window.location.hash.substring(1)+",你好";
+	}
+
+
+	//百叶窗
+	new imgSwitch("imgContainer",{
+		Type:1,
+		Width:210,
+		Height:485,
+		Pause:2000,
+		Speed:"normal",
+		Auto:true,
+		Navigate:"numberic",
+		NavigatePlace:"outer",
+		PicturePosition:"left"})
+
+
+	//canvas画布
+	var canvas=document.getElementById('canvas');
+	canvas.width=1000;
+	canvas.height=800;
+	var context=canvas.getContext("2d");
+	for(var i=0;i<20;i++){
+		var r=Math.random()*5+5;//5-15
+		var x=Math.random()*canvas.width;
+		var y=Math.random()*canvas.height*0.65;//天空与大地
+		var a=Math.random()*360;
+		drawStar(context,x,y,r,a);
+	}
+	function drawStar(cxt,x,y,R,rot){
+		cxt.save();
+		cxt.translate(x,y);
+		cxt.rotate(rot/180*Math.PI);
+		cxt.scale(R,R);
+		startPath(cxt);
+		cxt.fillStyle="rgba(255,255,255,"+Math.random()+")";
+		cxt.fill();
+		cxt.restore();
+
+	}
+	fillMoon(context,2,100,100,-45,30);
+
+	function startPath(cxt){
+		cxt.beginPath();
+		for(var i=0;i<10;i++){
+			cxt.lineTo(Math.cos((18+i*72)/180*Math.PI),
+				-Math.sin((18+i*72)/180*Math.PI));
+			cxt.lineTo(Math.cos((54+i*72)/180*Math.PI)*0.5,
+				-Math.sin((54+i*72)/180*Math.PI)*0.5);
+		}
+		cxt.closePath();
+	}
+	//月亮的绘制
+	function fillMoon(cxt,d,x,y,R,rot,fillColor){
+		cxt.save();
+		cxt.translate(x,y);
+		cxt.rotate(rot*Math.PI/180);
+		cxt.scale(R,R);
+		pathMoon(cxt,d);
+		cxt.fillStyle=fillColor||"#fb5";
+		cxt.fill();
+		cxt.restore();
+	}
+
+	//标准的弯月路径
+	function pathMoon(cxt,d){
+		cxt.beginPath();
+		cxt.arc(0,0,1,0.5*Math.PI,1.5*Math.PI,true);
+		cxt.moveTo(0,-1);
+		//控制点，以及月亮内弧切点的位置
+		cxt.arcTo(d,0,0,1,dis(0,-1,d,0)/d);
+		cxt.closePath();
+	}
+	function dis(x1,y1,x2,y2){
+		return Math.sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
+	}
+
+}
+function fun(data){ //注意:
+	console.log(data);
+	var searchFinal=document.getElementsByClassName('searchFinal')[0];
+	var search_ul=searchFinal.getElementsByTagName('ul')[0];
+	var html="";
+	if(this.value!="") {
+		for (var i = 0; i < data.resultList.length; i++) {
+			html += '<li class="Final_item">' +
+				'<a href="http://list.jiuxian.com/search.htm?key='+data.resultList[i].word+'" class="clearfix">' +
+				'<span class="fl">'+data.resultList[i].word+'</span>' +
+				'<em class="fr">约<b>'+data.resultList[i].count+'</b>件商品</em>' +
+				'</a>' +
+				'</li>';
+		}
+		search_ul.innerHTML = html;
+		searchFinal.style.display="block";
+	}else{
+		searchFinal.style.display="none";
+	}
 }
 
 

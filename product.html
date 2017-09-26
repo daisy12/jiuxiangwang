@@ -3,10 +3,16 @@
 <head>
     <title>酒仙网</title>
     <meta charset="utf-8">
+
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <link rel="stylesheet" type="text/css" href="css/product.css">
-    <script type="text/javascript" src="js/product.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/hover-min.css">
+
+    <script type="text/javascript" src="js/ajax.js"></script>
     <script type="text/javascript" src="js/move.js"></script>
+    <script type="text/javascript" src="js/product.js"></script>
+
+
 </head>
 <body>
 <div class="header">
@@ -114,12 +120,31 @@
             <img src="images/logo.png">
         </div>
         <div class="advertise fl">
-            <img src="images/act.gif">
+            <img src="images/act1.gif">
         </div>
         <div class="search_box fl">
             <div class="search">
                 <input type="text" class="search_txt">
                 <input type="button" value="搜索" class="search_btn">
+                <div class="searchFinal">
+                    <ul>
+                        <!--<li class="Final_item">
+                            <a href="" class="clearfix">
+                                <span class="fl">黄金酒</span>
+                                <em class="fr">约<b>68</b>件商品</em>
+                            </a>
+                        </li>
+                        <li class="Final_item">
+                            <a href="" class="clearfix">
+                                <span class="fl">黄金酒</span>
+                                <em class="fr"></em>
+                            </a>
+                        </li>-->
+                    </ul>
+                    <div class="close_dot">
+                        <span></span>
+                    </div>
+                </div>
             </div>
             <ul class="search_tig clearfix">
                 <li class="fl">
@@ -878,10 +903,13 @@
                 </ul>
             </div>
             <div class="product_intro clearfix">
-                <div class="introShow fl">
+                <div class="introShow" style="float:left;">
                     <div class="showPic">
-                        <img src="images/showBig1.jpg" class="small">
-                        <div class="mask"></div>
+                        <div class="small" >
+                            <img src="images/showBig1.jpg">
+                            <div class="mask"></div>
+                        </div>
+
                         <div class="big">
                             <img src="images/showBig1.jpg">
                         </div>
@@ -962,23 +990,26 @@
                             <span class="adrTitle fl">配送到</span>
                             <div class="addSelect fl">
                                 <div class="city fl">
-                                    <b>广东省</b>
-                                    <b>揭阳市</b>
-                                    <b>揭东区</b>
+                                    <div class="final">
+                                        <b>广东省</b>
+                                        <b>揭阳市</b>
+                                        <b>揭东区</b>
+                                    </div>
                                     <div class="cityDes" style="display:none">
                                         <ol class="clearfix selectTit">
-                                            <li class="">广东省</li>
-                                            <li class="active">揭阳市</li>
+                                            <li class="active">广东省</li>
+                                            <li class="">揭阳市</li>
                                             <li class="">揭东区</li>
                                         </ol>
                                         <div class="selectBody">
                                             <ul class="clearfix province">
-                                                <li>
-                                                    <a>北京</a>
-                                                </li>
-                                                <li>
-                                                    <a>安徽</a>
-                                                </li>
+                                                <!--省-->
+                                            </ul>
+                                            <ul class="clearfix town">
+                                                <!--市-->
+                                            </ul>
+                                            <ul class="clearfix district">
+                                                <!--区-->
                                             </ul>
                                         </div>
                                     </div>
@@ -1037,7 +1068,532 @@
                     </a>
                 </div>
             </div>
-            <div></div>
+           <!-- <div class="combination">
+                <div class="combitTit">
+                    <span>推荐组合</span>
+                </div>
+                <div class="combit_con clearfix">
+                    <div class="comb_box fl clearfix">
+                        <div class="master fl">
+                            <ul>
+                                <li>
+                                    <img>
+                                    <p></p>
+                                    <input type="checkbox">
+                                    <em>￥68.00</em>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="vice fl"></div>
+                    </div>
+                    <div class="buyBoth fl">
+
+                    </div>
+                </div>
+            </div>-->
+            <div class="productMsg clearfix">
+                <div class="productMsg_l fl">
+                    <div class="msgL_box">
+                        <h5 class="title">相关分类</h5>
+                        <ul class="classify clearfix">
+                            <li><a href="">白酒</a></li>
+                            <li><a href="">葡萄酒</a></li>
+                            <li><a href="">洋酒</a></li>
+                            <li><a href="">黄酒</a></li>
+                            <li><a href="">养生酒</a></li>
+                            <li><a href="">啤酒</a></li>
+                            <li><a href="">果酒</a></li>
+                            <li><a href="">酒具</a></li>
+                        </ul>
+                    </div>
+                    <div class="msgL_box">
+                        <h5 class="title">推荐品牌</h5>
+                        <ul class="brands clearfix">
+                            <li><a href="">白酒</a></li>
+                            <li><a href="">葡萄酒</a></li>
+                            <li><a href="">洋酒</a></li>
+                            <li><a href="">黄酒</a></li>
+                            <li><a href="">养生酒养生酒</a></li>
+                            <li><a href="">啤酒</a></li>
+                            <li><a href="">果酒</a></li>
+                            <li><a href="">酒具</a></li>
+                            <li><a href="">啤酒</a></li>
+                            <li><a href="">果酒</a></li>
+                            <li><a href="">酒具</a></li>
+                        </ul>
+                    </div>
+                    <div class="msgL_box">
+                        <h5 class="title">酒友推荐</h5>
+                        <ul class="friend clearfix">
+                            <li class="friend_item">
+                                <a class="pic">
+                                    <img src="images/show_01.jpg">
+                                </a>
+                                <p><a href="">45°西凤酒大凤香（精品）500ml</a></p>
+                                <div class="price">
+                                    <em>￥109.00</em>
+                                </div>
+                            </li>
+                            <li class="friend_item">
+                                <a>
+                                    <img src="images/show_02.jpg">
+                                </a>
+                                <p><a href="">45°西凤酒大凤香（精品）500ml</a></p>
+                                <div class="price">
+                                    <em>￥109.00</em>
+                                </div>
+                            </li>
+                            <li class="friend_item">
+                                <a>
+                                    <img src="images/show_03.jpg">
+                                </a>
+                                <p><a href="">45°西凤酒大凤香（精品）500ml</a></p>
+                                <div class="price">
+                                    <em>￥109.00</em>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="msgL_box">
+                        <h5 class="title">排行榜</h5>
+                        <div class="rank">
+                            <ol class="rank_title clearfix">
+                                <li class="active" data="price">同价位</li>
+                                <li data="brand">同品牌</li>
+                                <li data="type">同类别</li>
+                            </ol>
+                            <ul class="rank_con clearfix">
+                                <!--aax异步加载-->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="msgL_box">
+                        <h5 class="title">买了又买</h5>
+                        <ul class="buyAgain clearfix">
+                            <li class="buyAgain_item">
+                                <a class="pic">
+                                    <img src="images/show_01.jpg">
+                                </a>
+                                <p><a href="">45°西凤酒大凤香（精品）500ml</a></p>
+                                <div class="price">
+                                    <em>￥109.00</em>
+                                </div>
+                            </li>
+                            <li class="buyAgain_item">
+                                <a>
+                                    <img src="images/show_02.jpg">
+                                </a>
+                                <p><a href="">45°西凤酒大凤香（精品）500ml</a></p>
+                                <div class="price">
+                                    <em>￥109.00</em>
+                                </div>
+                            </li>
+                            <li class="buyAgain_item">
+                                <a>
+                                    <img src="images/show_03.jpg">
+                                </a>
+                                <p><a href="">45°西凤酒大凤香（精品）500ml</a></p>
+                                <div class="price">
+                                    <em>￥109.00</em>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="msgL_box">
+                        <h5 class="title">看了又看</h5>
+                        <ul class="lookAgain clearfix">
+                            <li class="lookAgain_item">
+                                <a class="pic">
+                                    <img src="images/show_01.jpg">
+                                </a>
+                                <p><a href="">45°西凤酒大凤香（精品）500ml</a></p>
+                                <div class="price">
+                                    <em>￥109.00</em>
+                                    <em class="vip">￥100.00</em>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="productMsg_r fr">
+                    <div class="msgR_title">
+                        <ul class="">
+                            <li class="active">
+                                <a href="javascript:void(0);">商品详情</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">规范参数</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">累积评价2732</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">商品咨询</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">商品辨真伪</a>
+                            </li>
+                        </ul>
+
+                        <div class="detailCode fr" style="display:block">
+                            <p>下载客户端 美酒随时抢</p>
+                            <span></span>
+                            <div class="pic">
+                                <img src="images/weixin-code.jpg">
+                            </div>
+                        </div>
+                        <button class="addCar fr" style="display:none">加入购物车</button>
+                    </div>
+                    <div class="tab_item" style="display:block">
+                        <div class="paraTabel">
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td>产地</td>
+                                    <td>中国 四川</td>
+                                </tr>
+                                <tr>
+                                    <td>香型</td>
+                                    <td>浓香型</td>
+                                </tr>
+                                <tr>
+                                    <td>原料</td>
+                                    <td>水、高粱、大米、糯米、小麦、玉米</td>
+                                </tr>
+                                <tr>
+                                    <td>储存条件</td>
+                                    <td>干燥、通风、阴凉和清洁处保存，宜10℃-25℃</td>
+                                </tr>
+                                <tr>
+                                    <td>酒厂</td>
+                                    <td>宜宾五粮液股份有限公司</td>
+                                </tr>
+                                <tr>
+                                    <td>净含量</td>
+                                    <td>500ml</td>
+                                </tr>
+                                <tr>
+                                    <td>箱规</td>
+                                    <td>1*6</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="clare">
+                            <div class="sub_tit">
+                                <span>售后保障</span>
+                            </div>
+                            <ul class="clearfix">
+                                <li>
+                                    <h6>恒温恒湿 理想储存</h6>
+                                    <p>采用电商领先的ERP和WMS系统配货包装准确率高达99.9%</p>
+                                    <img src="images/ver.jpg">
+                                </li>
+                                <li>
+                                    <h6>恒温恒湿 理想储存</h6>
+                                    <p>采用电商领先的ERP和WMS系统配货包装准确率高达99.9%</p>
+                                    <img src="images/ver.jpg">
+                                </li>
+                                <li>
+                                    <h6>恒温恒湿 理想储存</h6>
+                                    <p>采用电商领先的ERP和WMS系统配货包装准确率高达99.9%</p>
+                                    <img src="images/ver.jpg">
+                                </li>
+                                <li>
+                                    <h6>恒温恒湿 理想储存</h6>
+                                    <p>采用电商领先的ERP和WMS系统配货包装准确率高达99.9%</p>
+                                    <img src="images/ver.jpg">
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tig">
+                            <div class="sub_tit">
+                                <span>温馨提示</span>
+                            </div>
+                            <p>根据新修订的《商标法》及国家工商总局文件要求，2014年5月1日之后不得将"驰名商标"字样用于商品宣传，酒仙网依法对商品图片中含"驰名商标"字样做马赛克处理；同时，涉及厂家正在按照新规定逐步更换包装，在此期间，我们将对新旧包装货品随机发货，请以实际收到的货物为准。
+                                详情请见：（http://help.jiuxian.com/show-156.htm）。给您带来的不便，敬请谅解。</p>
+                        </div>
+                    </div>
+                    <div class="tab_item" style="display: block">
+                        <div class="detail">
+                            <ul class="clearfix">
+                                <li>产地：中国,四川</li>
+                                <li>香型：浓香型</li>
+                                <li>水、高粱、大米、糯米、小麦、玉米</li>
+                                <li>干燥、通风、阴凉和清洁处保存，宜10℃-25℃</li>
+                                <li>酒厂：宜宾五粮液股份有限公司</li>
+                                <li>净含量：500ml</li>
+                                <li>箱规：1*6</li>
+                            </ul>
+                            <div class="special">
+                                <h3>商品特点</h3>
+                                <p class="ps">
+                                    <img src="images/01.jpg">
+                                    <img src="images/02.jpg">
+                                    <img src="images/03.jpg">
+                                    <img src="images/04.jpg">
+                                    <img src="images/05.jpg">
+                                    <img src="images/06.jpg">
+                                    <img src="images/07.jpg">
+                                    <img src="images/08.jpg">
+                                    <img src="images/09.jpg">
+                                    <img src="images/10.jpg">
+                                    <img src="images/11.jpg">
+                                    <img src="images/12.jpg">
+                                    <img src="images/13.jpg">
+                                    <img src="images/14.jpg">
+                                    <img src="images/15.jpg">
+                                </p>
+                                <p class="prompt">如发现商品介绍信息有误，您可以点击<a href="">信息纠错</a>反馈给我们，谢谢。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab_item">
+                        <div class="estimate">
+                            <div class="estimateTit clearfix">
+                                <div class="estimateL fl">
+                                    <p><em>97</em>%</p>
+                                    <p>好评率</p>
+                                </div>
+                                <div class="estimateC fl">
+                                    <p>大家都认为</p>
+                                    <ul class="clearfix">
+                                        <li>品质好酒(263)</li>
+                                        <li>送货快(124)</li>
+                                        <li>包装给力(79)</li>
+                                        <li>老牌名酒(56)</li>
+                                        <li>窖香浓郁(46)</li>
+                                        <li>多次购买(36)</li>
+                                        <li>入口绵柔(24)</li>
+                                        <li>回味甘甜悠长(12)</li>
+                                        <li>香味协调(6)</li>
+                                        <li>尾净爽口(6)</li>
+                                    </ul>
+                                </div>
+                                <div class="estimateR fl">
+                                    <h6>评论或积分</h6>
+                                    <p>前5名额外<b>5-15</b>金币</p>
+                                    <p>
+                                        <a href="">积分规则</a>
+                                        <a href="">发表评论</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="estimateCon">
+                                <div class="scoreTit">
+                                    <ul class="clearfix">
+                                        <li class="active">全部(2736)</li>
+                                        <li>晒单(134)</li>
+                                        <li>追评(27)</li>
+                                    </ul>
+                                </div>
+                                <div class="scoreCon">
+                                    <ul>
+                                        <li class="score_item clearfix">
+                                            <div class="pic fl">
+                                                <div>
+                                                    <img src="images/photo.jpg">
+                                                </div>
+                                                <span class="name">酒仙酒友</span>
+                                                <i class="icon"></i>
+                                            </div>
+                                            <div class="statBox fl">
+                                                <p class="grade">
+                                                    <span>评分：</span>
+                                                    <i class="starPic"></i>
+                                                    <time class="time fr">2017-9-18 09:27:27</time>
+                                                </p>
+                                                <div class="exchange clearfix">
+                                                    <span class="fl">心得：</span>
+                                                    <p class="fl">品质好酒</p>
+                                                </div>
+                                                <div class="bask clearfix">
+                                                    <span class="fl">晒单：</span>
+                                                    <ul class="baskShow fl">
+                                                        <li class="fl">
+                                                            <img src="images/bask.jpg">
+                                                        </li>
+                                                        <li class="fl">
+                                                            <img src="images/bask.jpg">
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="score_item clearfix">
+                                            <div class="pic fl">
+                                                <div>
+                                                    <img src="images/photo.jpg">
+                                                </div>
+                                                <span class="name">酒仙酒友</span>
+                                                <i class="icon"></i>
+                                            </div>
+                                            <div class="statBox fl">
+                                                <p class="grade">
+                                                    <span>评分：</span>
+                                                    <i class="starPic"></i>
+                                                    <time class="time fr">2017-9-18 09:27:27</time>
+                                                </p>
+                                                <div class="exchange clearfix">
+                                                    <span class="fl">心得：</span>
+                                                    <p class="fl">品质好酒</p>
+                                                </div>
+                                                <div class="bask clearfix">
+                                                    <span class="fl">晒单：</span>
+                                                    <ul class="baskShow fl">
+                                                        <li class="fl">
+                                                            <img src="images/bask.jpg">
+                                                        </li>
+                                                        <li class="fl">
+                                                            <img src="images/bask.jpg">
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="score_item clearfix">
+                                            <div class="pic fl">
+                                                <div>
+                                                    <img src="images/photo.jpg">
+                                                </div>
+                                                <span class="name">酒仙酒友</span>
+                                                <i class="icon"></i>
+                                            </div>
+                                            <div class="statBox fl">
+                                                <p class="grade">
+                                                    <span>评分：</span>
+                                                    <i class="starPic"></i>
+                                                    <time class="time fr">2017-9-18 09:27:27</time>
+                                                </p>
+                                                <div class="exchange clearfix">
+                                                    <span class="fl">心得：</span>
+                                                    <p class="fl">品质好酒</p>
+                                                </div>
+                                                <div class="bask clearfix">
+                                                    <span class="fl">晒单：</span>
+                                                    <ul class="baskShow fl">
+                                                        <li class="fl">
+                                                            <img src="images/bask.jpg">
+                                                        </li>
+                                                        <li class="fl">
+                                                            <img src="images/bask.jpg">
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="crumbWrap">
+                            <div class="crumb">
+                                <a class="prev">上一页</a>
+                                <a class="current">1</a>
+                                <a>2</a>
+                                <a>3</a>
+                                <span>...</span>
+                                <a>8</a>
+                                <a class="next">下一页</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab_item">
+                        <div class="consult">
+                            <div class="consultCon">
+                                <div class="consultTit">
+                                    <ul class="clearfix">
+                                        <li class="active">全部咨询</li>
+                                        <li>商品提问(134)</li>
+                                        <li>促销活动(3)</li>
+                                        <li>库存及物流(6)</li>
+                                        <li>销售提问(1)</li>
+                                    </ul>
+                                </div>
+                                <div class="tig">
+                                    <p>提示： 因厂家更改产品包装、产地或者更换随机附件等没有任何提前通知，且每位咨询者购买情况、提问时间等不同， 为此以下回复信息仅供参考！若由此给您带来不便请多多谅解，谢谢！</p>
+                                    <button>我要咨询</button>
+                                </div>
+                                <ul class="problem">
+                                    <li>
+                                        <div class="user">
+                                            <span>****</span>
+                                            <p>整箱几瓶，可以整箱发货吗？</p>
+                                        </div>
+                                        <div class="saler">
+                                            <span>酒仙网客服回复：</span>
+                                            <p>尊敬的酒仙会员，你好，可以的</p>
+                                        </div>
+                                        <time>2017-01-22 15:29:59</time>
+                                    </li>
+                                    <li>
+                                        <div class="user">
+                                            <span>****</span>
+                                            <p>整箱几瓶，可以整箱发货吗？</p>
+                                        </div>
+                                        <div class="saler">
+                                            <span>酒仙网客服回复：</span>
+                                            <p>尊敬的酒仙会员，你好，可以的</p>
+                                        </div>
+                                        <time>2017-01-22 15:29:59</time>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="crumbWrap consultCrumb">
+                            <div class="crumb">
+                                <a class="prev">上一页</a>
+                                <a class="current">1</a>
+                                <a>2</a>
+                                <a>3</a>
+                                <span>...</span>
+                                <a>8</a>
+                                <a class="next">下一页</a>
+                            </div>
+                        </div>
+                        <div class="publish">
+                            <div class="publishTit">
+                                <h4>提问：<em>45度五粮液500ml</em></h4>
+                            </div>
+                            <div class="publishBox">
+                                <p>登录后才可发表咨询<a href="input.html">立即登录</a></p>
+                                <div class="attr">
+                                    <span>提问类型：</span>
+                                    <label for="typeOne">
+                                        <input type="radio" id="typeOne" name="typ" checked="true" value="0">
+                                        商品提问
+                                    </label>
+                                    <label for="typeTwo">
+                                        <input type="radio" id="typeTwo" name="typ" value="1">
+                                        促销活动提问
+                                    </label>
+                                    <label for="typeThree">
+                                        <input type="radio" id="typeThree" name="typ" value="2">
+                                        库存及物流提问
+                                    </label>
+                                    <label for="typeFour">
+                                        <input type="radio" id="typeFour" name="typ" value="3">
+                                        售后提问
+                                    </label>
+
+                                </div>
+                                <div class="content clearfix">
+                                    <span class="fl">提交问题：</span>
+                                    <textarea class="fl"></textarea>
+                                    <button class="fl hvr-buzz-out">提交问题</button>
+                                </div>
+                                <div class="explain">
+                                    <p>咨询说明<br>
+                                    1、商品咨询是酒仙网为您提供的疑难问答，在这里您可以与工作人员直接进行交流。因发起咨询的用户较多，可能无法及时进行回复，我们将在最快的时间内为您解答；
+                                    2、当涉及广告、比价、重复反馈、不实评论、恶意评论、粗口、危害国家安全等等不当言论时，酒仙网有权予以管理。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab_item">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

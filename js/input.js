@@ -18,6 +18,8 @@ window.onload=function(){
         this.parentNode.style.border="1px solid #fff";
         this.style.display="none";
     }
+
+    var telReg=/^1[0-9]{10}/;
     var login_type=document.getElementsByClassName('login_type')[0];
     var  input_items=login_type.getElementsByClassName('input_item');
     for(var i=0;i<input_items.length;i++){
@@ -30,49 +32,174 @@ window.onload=function(){
                 this.parentNode.getElementsByClassName('judgeDel')[0].style.display = "none";
                 this.parentNode.getElementsByClassName('judge')[0].style.display = "block";
             }
-
-
         }
+
         input_items[i].onblur=function(){
             this.parentNode.getElementsByClassName('placeholder')[0].style.display="block";
             if(this.value=='') {
-
                 this.parentNode.getElementsByClassName('validate')[0].style.display = "block";
                 this.className="input_item active";
                 if(this.parentNode.getElementsByClassName('judgeDel')[0]) {
                     this.parentNode.getElementsByClassName('judgeDel')[0].style.display = "block";
                     this.parentNode.getElementsByClassName('judge')[0].style.display = "none";
                 }
+                if(this.parentNode.getAttribute('class').substring(6)=='test'){
+                    this.parentNode.getElementsByClassName('validate')[0].innerHTML='请输入验证码';
+
+                }
+                if(this.parentNode.getAttribute('class').substring(6)=='tel') {
+                    this.parentNode.getElementsByClassName('validate')[0].innerHTML='请输入用户名/邮箱/手机号';
+                }
             }else{
                 this.parentNode.getElementsByClassName('placeholder')[0].style.display="none";
-
                 this.className="input_item";
-                if(this.parentNode.getElementsByClassName('judgeDel')[0]) {
+
+                if (this.parentNode.getElementsByClassName('judgeDel')[0]) {
                     this.parentNode.getElementsByClassName('judgeDel')[0].style.display = "none";
                     this.parentNode.getElementsByClassName('judge')[0].style.display = "none";
+                }
+                if(this.parentNode.getAttribute('class').substring(6)=='test'){
+                    var a=this.value.toLowerCase();
+                    var b=this.parentNode.getElementsByClassName('indentify')[0].innerText.toLowerCase();
+                    if(a!==b){
+                        this.parentNode.getElementsByClassName('validate')[0].style.display = "block";
+                        this.parentNode.getElementsByClassName('validate')[0].innerText="验证码输入错误";
+                    }
+                }
+                if(this.parentNode.getAttribute('class').substring(6)=='tel'){
+                    if(!/^1[0-9]{10}/.test(this.value)){
+                        this.parentNode.getElementsByClassName('validate')[0].style.display = "block";
+                        this.parentNode.getElementsByClassName('validate')[0].innerText="格式错误，请重新输入";
+                        this.parentNode.getElementsByClassName('judgeDel')[0].style.display = "block";
+                        this.parentNode.getElementsByClassName('judge')[0].style.display = "none";
+                    }
                 }
             }
         }
     }
 
-    /*var submit=document.getElementsByClassName('submit')[0];
-    var sub_btn=submit.getElementsByTagName('button')[0];
 
-    var telReg=/^1[0-9]{10}/;
-    var emailReg=/[a-zA-Z0-9]{1,10}@[a-zA-Z0-9]{1,5}\.[a-zA-Z0-9]{1,5}/;
-    var userReg=/^[\u4e00-\u9fa5]{2,4}$/;
+    //随机生成验证码
+    var indentify=document.getElementsByClassName('indentify');
+    console.log(indentify)
+    var str= 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
+    var len=str.length;
+
+
+    for(var i=0;i<indentify.length;i++){
+        indentify[i].index=i;
+        indentify[i].onclick=function(){
+            var test="";
+            for(var i=0;i<4;i++){
+                test+=str.charAt(Math.floor(Math.random()*len));
+            }
+            this.innerHTML=test;
+        }
+    }
+
+    for(var i=0;i<indentify.length;i++) {
+        var testStart="";
+        for(var j=0;j<len;j++){
+            testStart+=str.charAt(Math.floor(Math.random()*len));
+            if(testStart.length==4){
+                break;
+            }
+        }
+        indentify[i].innerText=testStart;
+
+    }
+
+    //手机验证码
+    var loginMobile=document.getElementsByClassName('loginMobile')[0];
+    var getNum=loginMobile.getElementsByClassName('getNum')[0];
+    var testTimer=null;
+    getNum.onclick=function(){
+        var that=this;
+        clearInterval(testTimer);
+        this.setAttribute("disabled",false);
+        var dateLine=59;
+        getNum.innerHTML='重新发送 59';
+        testTimer=setInterval(function(){
+            dateLine--;
+            if(dateLine==0){
+                clearInterval(testTimer);
+                that.setAttribute('disabled',true);
+
+                getNum.innerHTML = "重新发送";
+                var shadeCode=document.getElementsByClassName('shadeCode')[0];
+                shadeCode.style.display="block";
+                var test="";
+                for(var i=0;i<4;i++){
+                    test+=str.charAt(Math.floor(Math.random()*len));
+                }
+                shadeCode.getElementsByClassName('code')[0].innerText=test;
+            }else {
+                getNum.innerHTML = "重新发送 "+dateLine;
+            }
+        },1000)
+    }
+
+    var shadeCode=document.getElementsByClassName('shadeCode')[0];
+    var close=shadeCode.getElementsByClassName('close')[0];
+    var shadeBtn=shadeCode.getElementsByTagName('button')[0];
+    var num_item=document.getElementsByClassName('num_item')[0];
+    close.onclick=function(){
+        shadeCode.style.display="none";
+    }
+    shadeBtn.onclick=function(){
+        shadeCode.style.display="none";
+        num_item.value=shadeCode.getElementsByClassName('code')[0].innerText;
+    }
+
+
+
+    //登录
+    var submit=document.getElementsByClassName('submit')[0];
+    var sub_btn=submit.getElementsByTagName('button')[0];
+    var tel_item=document.getElementsByClassName('tel_item')[0];
+    var pass_item=document.getElementsByClassName('pass_item')[0];
+
+    var test=document.getElementsByClassName('test')[0];
+    var testValidate=test.getElementsByClassName('validate')[0];
+
+    console.log(sub_btn)
     sub_btn.onclick=function(){
 
-        alert(1)
-        var telVal=document.getElementsByClassName('tel_item')[0].value;
-        var passVal=document.getElementsByClassName('pass_item')[0].value;
-        var testVal=document.getElementsByClassName('test_item')[0].value;
-        alert(telVal)
-
-        if(telReg.test(telVal)&&emailReg.test(telVal)&&userReg.test(telVal)){
-            this.parentNode.getElementsByClassName('validate')[0].innerText="�����������������";
+        if (window.XMLHttpRequest) {
+            var xhr = new XMLHttpRequest();
+        } else {
+            var xhr = new ActiveXObject('Microsoft.XMLHTTP');
         }
-    }*/
+
+
+        xhr.open('GET','php/user.php?tel='+tel_item.value+'&password='+pass_item.value,true);
+        xhr.send();
+        xhr.onreadystatechange=function(){
+            if (xhr.readyState === 4 && xhr.status === 200){
+
+                console.log(JSON.parse(xhr.responseText))
+                console.log(xhr.responseText)
+                var data=JSON.parse(xhr.responseText)
+
+                if(data.success){
+                        localStorage.setItem('name',tel_item.value);
+                        document.location.href="index.html?#"+data.name;
+
+                }else{
+                    testValidate.style.display="block";
+                    testValidate.innerHTML=data.msg;
+                }
+            }else{
+                console.log('error');
+            }
+        }
+    }
+
+    if(localStorage.getItem('name')){
+        document.getElementsByClassName('placeholder')[0].style.display="none";
+        document.getElementsByClassName('tel_item')[0].value=localStorage.getItem('name');
+    }
+
 
     var login_con=document.getElementsByClassName('login-con')[0];
     var parner=document.getElementsByClassName('parner')[0];
@@ -173,7 +300,7 @@ window.onload=function(){
     for(var i=20;i>0;i-=2){
         arr.push(i,-i);
     }
-    arr.push(0);//�������һ��0
+    arr.push(0);
     var i=-1;
     var input_box=document.getElementsByClassName('input-box')[0];
     input_box.onmouseover=function() {

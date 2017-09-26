@@ -164,24 +164,7 @@ window.onload=function() {
     }
 
 
-    /*var pro=['北京','安徽省','福建省','甘肃省','广东省','广西省','贵州省','海南省','河北省',
-        '河南省','黑龙江省','湖北省','湖南省','吉林省','江苏省','江西省','辽宁省',
-        '内蒙古省','宁夏','青海省','山东省','山西省','陕西省','上海','四川省','天津',
-        '西藏','新疆','云南省','浙江省','重庆'];
-    var cty=[
-        ['北京市'],
-        ['广州市','深圳市','潮州市','东莞市','佛山市','河源市','惠州市','江门市','揭阳市',
-            '茂名市','梅州市','清远市','汕头市','汕尾市','韶关市','阳江市','云浮市','湛江市',
-            '肇庆市','中山市','珠海市','兴宁市'],
-        ['福州市','龙岩市','南平市','宁德市','莆田市','泉州市','三明市','厦门市','漳州市'],
-        ['甘肃']
-    ]
-    var province=document.getElementsByClassName('province')[0];
-    var str="";
-    for(var i=0;i<pro.length;i++){
-        str+='<li><a>'+pro[i]+'</a></li>';
-    }
-    province.innerHTML=str;*/
+
 
     //数量
     var buyNum=document.getElementsByClassName('buyNum')[0];
@@ -207,6 +190,13 @@ window.onload=function() {
     var showNext=showList.getElementsByClassName('next')[0];
     var showPic=document.getElementsByClassName('showPic')[0];
     var showImg=showPic.getElementsByTagName('img')[0];
+    var big=showPic.getElementsByClassName('big')[0];
+    var bigImg=big.getElementsByTagName('img')[0];
+
+    var small=showPic.getElementsByClassName('small')[0];
+    var mask=small.getElementsByClassName('mask')[0];
+
+
 
     var num=0;
     showItems.innerHTML+=showItems.innerHTML;
@@ -232,6 +222,7 @@ window.onload=function() {
             move(showItems, {'left': -76 * num});
         }
     }
+    /*alert(showItemsLi.length) 12*/
     for(var i=0;i<showItemsLi.length;i++){
         showItemsLi[i].index=i;
         showItemsLi[i].onmouseover=function(){
@@ -240,43 +231,652 @@ window.onload=function() {
             }
             this.className="active";
             showItemsLi[this.index+showItemsLi.length/2].className="active";
-            showImg.src="images/showBig"+(this.index%(showItemsLi.length/2)+1)+".jpg"
+           /* alert(this.index)
+            alert(this.index%(showItemsLi.length/2)+1)*/
+            showImg.src="images/showBig"+(this.index%(showItemsLi.length/2)+1)+".jpg";
+            bigImg.src="images/showBig"+(this.index%(showItemsLi.length/2)+1)+".jpg";
         }
     }
 
-    //放大镜
-    //var showPic=document.getElementsByClassName('showPic')[0];
-    var small=showPic.getElementsByTagName('img')[0];
-    var mask=document.getElementsByClassName('mask')[0];
-
-    var big=document.getElementsByClassName('big')[0];
-    var bigImg=document.getElementsByTagName('img')[0];
-
-    var w=mask.offsetWidth;
-    var h=mask.offsetHeight;
-
-    var scrolltop=document.documentElement.scrollTop||document.body.scrollTop;
-    showPic.onmouseover=function(ev){
+    //放大镜:  遮罩层高度与宽度  滚动高度
+    small.onmouseover=function(ev){
         var e=ev||window.event;
-        var x= e.clientX;
-        var y= e.clientY;
+        mask.style.display="block";
+        big.style.display="block";
 
-        showPic.onmousemove=function(){
-            mask.style.left=x-showPic.offsetLeft-w/2+'px';
-            mask.style.top=y-showPic.offsetTop-h/2+scrolltop+'px';
+        var w=mask.offsetWidth;
+        var h=mask.offsetHeight;
+        var scrolltop=document.documentElement.scrollTop||document.body.scrollTop;
+
+        mask.style.left= e.clientX-showPic.offsetLeft-w/2+'px';
+        mask.style.top= e.clientY-(showPic.offsetTop-scrolltop)-h/2+'px';
+
+        mask.onmousemove=function(ev){
+            var e=ev||window.event;
+            var disX= e.clientX-showPic.offsetLeft-w/2;
+            var disY= e.clientY-showPic.offsetTop+scrolltop-h/2;
+            console.log(e.clientY);
+
+            if(disX<0){
+                disX=0;
+            }else if(disX>small.offsetWidth-mask.offsetWidth){
+                disX=small.offsetWidth-mask.offsetWidth;
+            }
+            if(disY<0){
+                disY=0;
+            }else if(disY>small.offsetHeight-mask.offsetHeight){
+                disY=small.offsetHeight-mask.offsetHeight;
+            }
+
+            mask.style.left=disX+10+'px';
+            mask.style.top=disY+10+'px';
+
+            var x=mask.offsetLeft/(small.offsetWidth-mask.offsetWidth);/*距离div左边/div大小*/
+            var y=mask.offsetTop/(small.offsetHeight-mask.offsetHeight);
+
+            bigImg.style.left = -x*(bigImg.offsetWidth-big.offsetWidth) + "px";
+            bigImg.style.top = -y*(bigImg.offsetHeight-big.offsetHeight) + "px";
+        }
+        small.onmouseout=function(){
+            mask.style.display="none";
+            big.style.display="none";
         }
     }
+
+
+
+
+    //省市区
+    var city=document.getElementsByClassName('city')[0];
+    var final=city.getElementsByClassName('final')[0];
+    var cityDes=document.getElementsByClassName('cityDes')[0];
+
+    var selectTit=document.getElementsByClassName('selectTit')[0];
+    var titLis=selectTit.getElementsByTagName('li');
+    var province=document.getElementsByClassName('province')[0];
+    var town=document.getElementsByClassName('town')[0];
+    var district=document.getElementsByClassName('district')[0];
+
+    var selectBody = document.getElementsByClassName('selectBody')[0];
+    var selectBody_ul = selectBody.getElementsByTagName('ul');
+
+    var cityClick=0;
+    final.onclick=function() {
+
+        if(cityDes.style.display =="block") {
+            cityDes.style.display = "none";
+        }
+        else{
+            cityDes.style.display = "block";
+        }
+
+
+        for (var k = 0; k < titLis.length; k++) {
+            titLis[k].className = "";
+            selectBody_ul[k].style.display = "none";
+        }
+        titLis[0].className = "active";
+        selectBody_ul[0].style.display="block";
+
+        if (window.XMLHttpRequest) {
+            var xhr = new XMLHttpRequest();
+        } else {
+            var xhr = new ActiveXObject('Microsoft.XMLHTTP')
+        }
+        xhr.open('GET', 'js/city.js', true);
+        xhr.send();
+        xhr.onreadystatechange = function () {
+            //初始化省加载
+            if (xhr.readyState === 4 && xhr.status === 200) {
+
+                console.log(JSON.parse(xhr.responseText));
+                var data = JSON.parse(xhr.responseText);
+                var html = "";
+                for (var i = 0; i < data.citylist.length; i++) {
+                    html += '<li><a>' + data.citylist[i].p + '</a></li>';
+                }
+                province.innerHTML = html;
+            }
+
+            //市
+            var pro_lis = province.getElementsByTagName('li');
+            for (var i = 0; i < pro_lis.length; i++) {
+                pro_lis[i].index = i;
+                pro_lis[i].onclick = function () {
+                    for (var k = 0; k < titLis.length; k++) {
+                        titLis[k].className = "";
+                        selectBody_ul[k].style.display = "none";
+                    }
+                    titLis[0].innerHTML = this.children[0].innerHTML;
+                    titLis[1].className = "active";
+
+                    province.style.display = "none";
+                    selectBody_ul[1].style.display="block";
+
+                    var htmlT = "";
+                    if (data.citylist[this.index].c) {
+                        for (var j = 0; j < data.citylist[this.index].c.length; j++) {
+                            htmlT += '<li><a>' + data.citylist[this.index].c[j].n + '</a></li>';
+                        }
+                        town.innerHTML = htmlT;
+                    }
+                    var that = this.index;
+
+                    //区
+                    var town_lis = town.getElementsByTagName('li');
+                    for (var i = 0; i < town_lis.length; i++) {
+                        town_lis[i].index = i;
+                        town_lis[i].onclick = function () {
+
+                            for (var k = 0; k < titLis.length; k++) {
+                                titLis[k].className = "";
+                                selectBody_ul[k].style.display = "none";
+                            }
+                            titLis[1].innerHTML = this.children[0].innerHTML;
+                            titLis[2].className = "active";
+                            selectBody_ul[2].style.display="block";
+
+                            var htmlD = "";
+                            if (data.citylist[that].c[this.index].a) {
+                                titLis[2].className = "active";
+                                titLis[2].innerHTML = data.citylist[that].c[this.index].a[0].s;
+                                for (var x = 0; x < data.citylist[that].c[this.index].a.length; x++) {
+                                    htmlD += '<li><a>' + data.citylist[that].c[this.index].a[x].s + '</a></li>';
+                                }
+                            } else {
+                                titLis[2].innerHTML = "";
+                                titLis[2].className = "";
+                                cityDes.style.display = "none";
+                                var bs = city.getElementsByTagName('b');
+                                for (var y = 0; y < bs.length; y++) {
+                                    bs[y].innerText = titLis[y].innerText;
+                                }
+                            }
+                            district.innerHTML = htmlD;
+
+
+                            var dis_lis = district.getElementsByTagName('li');
+
+                            for (var n = 0; n < dis_lis.length; n++) {
+                                dis_lis[n].onclick = function () {
+                                    cityDes.style.display = "none";
+
+                                    titLis[2].innerHTML = this.children[0].innerHTML;
+                                    var bs = city.getElementsByTagName('b');
+                                    for (var y = 0; y < bs.length; y++) {
+                                        bs[y].innerText = titLis[y].innerText;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+        for (var k = 0; k < titLis.length; k++) {
+            titLis[k].index = k;
+            titLis[k].onclick = function () {
+                for (var k = 0; k < titLis.length; k++) {
+                    titLis[k].className = "";
+                    selectBody_ul[k].style.display = "none";
+                }
+                titLis[this.index].className = "active";
+                selectBody_ul[this.index].style.display="block";
+            }
+        }
+
+    }
+
+    //排行榜
+    var rank_title=document.getElementsByClassName('rank_title')[0];
+    var rank_title_lis=rank_title.getElementsByTagName('li');
+    var rank_con=document.getElementsByClassName('rank_con')[0];
+    var tempAct=0;
+
+    if(window.XMLHttpRequest){
+        var xhr=new XMLHttpRequest();
+    }else{
+        var xhr=new ActiveXObject('Microsoft.XMLHTTP');
+    }
+    xhr.open('get','js/rank.json',true); //这里需要注意：json文件里面都是双引号的，且不能在里面添加注释，非常严谨的数据格式
+    xhr.send();
+    xhr.onreadystatechange=function(){
+        if(xhr.readyState===4&&xhr.status===200){
+            var obj=JSON.parse(xhr.responseText);
+
+            var htmlStart="";
+            for(var k=0;k<obj['price'].length;k++){
+                htmlStart+='<li>'+
+                    '<div class="pic fl">'+
+                    '<a href=""><img src="'+obj['price'][k].src+'"></a>'+
+                    '</div>'+
+                    '<div class="fl msg">'+
+                    '<p>'+obj['price'][k].info+'</p>'+
+                    '</div>'+
+                    '<span class="price">'+obj['price'][k].price+'</span>'+
+                    '<i class="currentRink">'+(k+1)+'</i>'+
+                    '</li>';
+            }
+            rank_con.innerHTML=htmlStart;
+
+
+            for(var i=0;i<rank_title_lis.length;i++){
+                 rank_title_lis[i].index=i;
+                 rank_title_lis[i].onclick=function(){
+                     rank_title_lis[tempAct].className="";
+                     this.className="active";
+                     tempAct=this.index;
+
+                     var html="";
+                     var n=this.getAttribute('data');
+                     //数据渲染
+
+                     for(var k=0;k<obj[n].length;k++){
+                         html+='<li>'+
+                             '<div class="pic fl">'+
+                             '<a href=""><img src="'+obj[n][k].src+'"></a>'+
+                             '</div>'+
+                             '<div class="fl msg">'+
+                             '<p>'+obj[n][k].info+'</p>'+
+                             '</div>'+
+                             '<span class="price">'+obj[n][k].price+'</span>'+
+                             '<i class="currentRink">'+(k+1)+'</i>'+
+                             '</li>';
+                     }
+                     rank_con.innerHTML=html;
+
+                 }
+             }
+        }
+    }
+
+    //右边详情
+    var msgR_title=document.getElementsByClassName('msgR_title')[0];
+    var msgR_title_li=msgR_title.getElementsByTagName('li');
+    var tab_item=document.getElementsByClassName('tab_item');
+
+    for(var i=0;i<msgR_title_li.length;i++){
+        msgR_title_li[i].index=i;
+        msgR_title_li[i].onclick=function(){
+            for(var i=0;i<msgR_title_li.length;i++){
+                msgR_title_li[i].className="";
+                tab_item[i].style.display="block";
+            }
+            this.className="active";
+
+            var num=this.index;
+            for(var j=0;j<num;j++){
+                tab_item[j].style.display="none";
+            }
+        }
+    }
+
+
+    //吸顶
+    var productMsg_r=document.getElementsByClassName('productMsg_r fr')[0];
+    var msgR_title=productMsg_r.getElementsByClassName('msgR_title')[0];
+
+    var detailCode=msgR_title.getElementsByClassName('detailCode')[0];
+    var addCar=msgR_title.getElementsByClassName('addCar')[0];
+
+    var footer=document.getElementsByClassName('footer')[0];
+
+    var product_offsetTop=productMsg_r.offsetTop;
+    console.log(product_offsetTop);
+
+    var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+    document.onscroll=function() {
+        scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+        //console.log(scrollTop);
+        if (scrollTop>product_offsetTop-100&&scrollTop<footer.offsetTop) {
+            detailCode.style.display="none";
+            addCar.style.display="block";
+            msgR_title.className="msgR_title current";
+
+        }else{
+            detailCode.style.display="block";
+            addCar.style.display="none";
+            msgR_title.className="msgR_title";
+        }
+    }
+
+
+    var consultTit=document.getElementsByClassName('consultTit')[0];
+    var consultTit_li=consultTit.getElementsByTagName('li');
+    for(var i=0;i<consultTit_li.length;i++){
+        consultTit_li[i].index=i;
+        consultTit_li[i].onclick=function(){
+            for(var i=0;i<consultTit_li.length;i++) {
+                consultTit_li[i].className="";
+            }
+            this.className="active";
+            if(this.index==0){
+                decorate(1);
+                refresh();
+            }else {
+                decorateItem(1, this.index - 1);
+                refreshItem(this.index - 1);
+            }
+        }
+    }
+
+
+    //提交问题
+    var publishBox=document.getElementsByClassName('publishBox')[0];
+    var pubTexa=publishBox.getElementsByTagName('textarea')[0];
+    var pubBtn=publishBox.getElementsByTagName('button')[0];
+    var radioBtn= publishBox.getElementsByTagName('input');
+    var problem=document.getElementsByClassName('problem')[0];
+
+    var str=['商品提问','促销活动','库存及物流提问','售后提问'];
+    var pages = 0;
+    var crumbTemp=1;
+    var crumbTemp1=1;
+    refresh();
+    function refresh() {
+        var consultCrumb = document.getElementsByClassName('consultCrumb')[0];
+        var crumb = consultCrumb.getElementsByClassName('crumb')[0];
+        var listnum = 0;
+        for (var i = 0; i < localStorage.length; i++) {
+            var key = localStorage.key(i);
+            if (key.substring(0, 3) == 'pro') {
+                listnum++;
+            }
+        }
+        page = Math.ceil(listnum / 4);
+        //alert(page)
+        crumb.innerHTML = '<a class="prev">上一页</a>';
+        var k=0;
+        for (k = 1; k<=page; k++) {
+            if (k==4) {
+                crumb.innerHTML += '<span>...</span>'+'<a>' +page+ '</a>';
+                break;
+            }else if(k==1) {
+                crumb.innerHTML += '<a class="current">' + k + '</a>';
+            }else{
+                crumb.innerHTML += '<a>' + k + '</a>';
+            }
+        }
+        crumb.innerHTML += '<a class="next">下一页</a>';
+
+
+        var crumbA=crumb.getElementsByTagName('a');
+
+        for(var i=1;i<crumbA.length-1;i++){
+
+            crumbA[i].onclick=function(){
+                //alert(1)
+                for(var i=1;i<crumbA.length-1;i++){
+                    crumbA[i].className="";
+                }
+                this.className="current";
+                decorate(parseInt(this.innerText));
+                crumbTemp=parseInt(this.innerText)+1;
+            }
+        }
+
+        crumbA[0].onclick=function(){ //prev
+            crumbTemp=crumbTemp-1;
+            console.log(crumbTemp)
+            if(crumbTemp<1){
+                crumbTemp=page;
+            }
+            decorate(crumbTemp);
+        }
+        crumbA[crumbA.length-1].onclick=function(){ //next
+            crumbTemp=crumbTemp+1;
+            console.log(crumbTemp)
+            if(crumbTemp>page){
+                crumbTemp=1;
+            }
+            decorate(crumbTemp);
+        }
+    }
+
+
+    function refreshItem(value) {
+        var consultCrumb = document.getElementsByClassName('consultCrumb')[0];
+        var crumb = consultCrumb.getElementsByClassName('crumb')[0];
+        var listnum = 0;
+        for (var i = 0; i < localStorage.length; i++) {
+            var key = localStorage.key(i);
+            var objJson=JSON.parse(localStorage.getItem(key));
+            if (key.substring(0, 3) == 'pro'&&objJson.type==value) {
+                listnum++;
+            }
+        }
+
+        page = Math.ceil(listnum / 4);
+      /*  alert(page) 页数*/
+
+        //alert(page)
+        crumb.innerHTML = '<a class="prev">上一页</a>';
+        var k=0;
+        for (k = 1; k<=page; k++) {
+            if (k==4) {
+                crumb.innerHTML += '<span>...</span>'+'<a>' +page+ '</a>';
+                break;
+            }else if(k==1) {
+                crumb.innerHTML += '<a class="current">' + k + '</a>';
+            }else{
+                crumb.innerHTML += '<a>' + k + '</a>';
+            }
+        }
+        crumb.innerHTML += '<a class="next">下一页</a>';
+
+
+        var crumbA=crumb.getElementsByTagName('a');
+
+        for(var i=1;i<crumbA.length-1;i++){
+
+            crumbA[i].onclick=function(){
+                //alert(1)
+                for(var i=1;i<crumbA.length-1;i++){
+                    crumbA[i].className="";
+                }
+                this.className="current";
+                decorateItem(parseInt(this.innerText),value);
+                crumbTemp1=parseInt(this.innerText)+1;
+            }
+        }
+        crumbA[0].onclick=function(){ //prev
+            crumbTemp1=crumbTemp1-1;
+            console.log(crumbTemp1)
+            if(crumbTemp1<1){
+                crumbTemp1=page;
+            }
+            decorateItem(crumbTemp1,value);
+        }
+        crumbA[crumbA.length-1].onclick=function(){ //next
+            crumbTemp1=crumbTemp1+1;
+            console.log(crumbTemp1)
+            if(crumbTemp1>page){
+                crumbTemp1=1;
+            }
+            decorateItem(crumbTemp1,value);
+        }
+    }
+    function decorateItem(target,value){
+        var localhtml = "";
+        var count=0;
+        for(var i=localStorage.length-4*(target-1)-1;i>=0;i--){
+
+            var key=localStorage.key(i);//localStorage.getItem(key)
+            var objJson=JSON.parse(localStorage.getItem(key));
+            if(key.substring(0,3)=='pro'&&objJson.type==value){
+                console.log(objJson)
+                if(count==4){
+                    break;
+
+                }
+                localhtml='<li>'+
+                    '<div class="user">'+
+                    '<span>****</span>'+
+                    '<p>'+objJson.user+'</p>'+
+                    '</div>'+
+                    '<div class="saler">'+
+                    '<span>酒仙网客服回复：</span>'+
+                    '<p>尊敬的酒仙会员，'+objJson.sale+'</p>'+
+                    '</div>'+
+                    '<time>'+objJson.time+'</time>'+
+                    '</li>'+localhtml;
+                //console.log(localhtml);
+                count++;
+            }
+        }
+        console.log(localhtml);
+        problem.innerHTML=localhtml;
+
+    }
+
+
+    decorate(1);
+    function decorate(target){
+        var localhtml = "";
+        var count=0;
+        for(var i=localStorage.length-4*(target-1)-1;i>=0;i--){
+
+            var key=localStorage.key(i);//localStorage.getItem(key)
+            console.log(localStorage.getItem(key))
+            if(key.substring(0,3)=='pro'){
+                if(count==4){
+                    break;
+
+                }
+                var objJson=JSON.parse(localStorage.getItem(key));
+                localhtml='<li>'+
+                    '<div class="user">'+
+                    '<span>****</span>'+
+                    '<p>'+objJson.user+'</p>'+
+                    '</div>'+
+                    '<div class="saler">'+
+                    '<span>酒仙网客服回复：</span>'+
+                    '<p>尊敬的酒仙会员，'+objJson.sale+'</p>'+
+                    '</div>'+
+                    '<time>'+objJson.time+'</time>'+
+                    '</li>'+localhtml;
+                //console.log(localhtml);
+                count++;
+            }
+        }
+        console.log(localhtml);
+        problem.innerHTML=localhtml;
+
+    }
+
+    for(var i=0;i<radioBtn.length;i++) {
+        radioBtn[i].onclick=function(){
+            for(var i=0;i<radioBtn.length;i++){
+                radioBtn[i].removeAttribute('checked');
+            }
+            this.setAttribute('checked','true');
+        }
+    }
+    pubBtn.onclick=function(){
+        if(pubTexa.value!=''){
+            var textValue=pubTexa.value;
+            problem=document.getElementsByClassName('problem')[0];
+            var html="";
+            var str="";
+            for(var i=0;i<radioBtn.length;i++){
+                console.log(radioBtn[i].value)
+                if(radioBtn[i].getAttribute('checked')=='true'){
+                    console.log(radioBtn[i].value)
+                    var date=new Date();
+                    str=date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()+
+                        " "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+                    html='<li>'+
+                        '<div class="user">'+
+                        '<span>****</span>'+
+                        '<p>'+textValue+'</p>'+
+                        '</div>'+
+                        '<div class="saler">'+
+                        '<span>酒仙网客服回复：</span>'+
+                        '<p>尊敬的酒仙会员，请稍等</p>'+
+                        '</div>'+
+                        '<time>'+str+'</time>'+
+                        '</li>';
+                    problem.innerHTML+=html;
+
+                    var salerValue="请稍等";
+                    var objJson={
+                        "time":str,
+                        "user":textValue,
+                        "type":radioBtn[i].value,
+                        "sale":salerValue
+                    }
+                    //类型
+                    var stringJson=JSON.stringify(objJson);
+                    localStorage.setItem('pro'+str,stringJson);
+                    refresh();
+                }
+            }
+           /* console.log(html);*/
+
+            //本地存储：
+
+        }else{
+            alert('发送失败，请输入发送内容！');
+        }
+        pubTexa.value="";
+
+    }
+
+
+
+
+
+    //跨域搜索框提示信息
+    //http://list.jiuxian.com/assKeyWords.htm?callback=fn&wd=茅
+    var search_txt=document.getElementsByClassName('search_txt')[0];
+    var searchFinal=document.getElementsByClassName('searchFinal')[0];
+    var search_ul=searchFinal.getElementsByTagName('ul')[0];
+
+
+
+    search_txt.onkeyup=function(){
+        if(search_txt.value!='') {
+            searchFinal.style.display="block";
+            var script = document.createElement('script');
+            script.src = "http://list.jiuxian.com/assKeyWords.htm?wd="+this.value+"&callback=fun";
+            document.body.appendChild(script);
+        }else{
+            searchFinal.style.display="none";
+        }
+
+    }
+
+    var close_dot=document.getElementsByClassName('close_dot')[0];
+    close_dot.onclick=function(){
+        searchFinal.style.display="none";
+    }
+
+}
+function fun(data){ //注意
+    console.log(data);
+    var searchFinal=document.getElementsByClassName('searchFinal')[0];
+    var search_ul=searchFinal.getElementsByTagName('ul')[0];
+    var html="";
+    if(this.value!="") {
+        for (var i = 0; i < data.resultList.length; i++) {
+            html += '<li class="Final_item">' +
+                '<a href="http://list.jiuxian.com/search.htm?key='+data.resultList[i].word+'" class="clearfix">' +
+                '<span class="fl">'+data.resultList[i].word+'</span>' +
+                '<em class="fr">约<b>'+data.resultList[i].count+'</b>件商品</em>' +
+                '</a>' +
+                '</li>';
+        }
+        search_ul.innerHTML = html;
+        searchFinal.style.display="block";
+    }else{
+        searchFinal.style.display="none";
+    }
+
 }
 
 
-var province=document.getElementsByClassName('province')[0];
-ajax('GET','city.min.js','',function(data){
-    var jsonText=JSON.parse(data);
-    console.log(jsonText);
-    var str="";
-    for(var i=0;i<pro.length;i++){
-        str+='<li><a>'+pro[i]+'</a></li>';
-    }
-    province.innerHTML=str;
-})
+
+
+
 

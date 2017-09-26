@@ -1,0 +1,29 @@
+{
+  "price":[
+    {"src":"images/rank1.jpg","info":"52°茅台集团白金原浆酒（龙腾四海）500ml*4","price":"￥569.00"},
+    {"src":"images/rank2.jpg","info":"（2013年 老酒）58°金门高粱小白金龙300ml","price":"￥100.00"},
+    {"src":"images/rank1.jpg","info":"52°水井坊小水井500ml","price":"￥569.00"},
+    {"src":"images/rank1.jpg","info":"52°茅台集团白金原浆酒（龙腾四海）500ml*4","price":"￥200.00"},
+    {"src":"images/rank1.jpg","info":"（2013年 老酒）58°金门高粱小白金龙300ml","price":"￥569.00"},
+    {"src":"images/rank3.jpg","info":"52°茅台集团白金原浆酒（龙腾四海）500ml*4","price":"￥569.00"},
+    {"src":"images/rank2.jpg","info":"52°茅台集团白金原浆酒（龙腾四海）500ml*4","price":"￥569.00"}
+  ],
+  "brand":[
+    {"src":"images/rank3.jpg","info":"52°茅台集团白金原浆酒（龙腾四海）500ml*4","price":"￥500.00"},
+    {"src":"images/rank2.jpg","info":"（2013年 老酒）58°金门高粱小白金龙300ml","price":"￥569.00"},
+    {"src":"images/rank1.jpg","info":"52°水井坊小水井500ml","price":"￥569.00"},
+    {"src":"images/rank3.jpg","info":"52°茅台集团白金原浆酒（龙腾四海）500ml*4","price":"￥569.00"},
+    {"src":"images/rank3.jpg","info":"（2013年 老酒）58°金门高粱小白金龙300ml","price":"￥569.00"},
+    {"src":"images/rank2.jpg","info":"52°茅台集团白金原浆酒（龙腾四海）500ml*4","price":"￥569.00"}
+  ],
+  "type":[
+    {"src":"images/rank2.jpg","info":"52°茅台集团白金原浆酒（龙腾四海）500ml*4","price":"￥569.00"},
+    {"src":"images/rank3.jpg","info":"52°茅台集团白金原浆酒（龙腾四海）500ml*4","price":"￥400.00"},
+    {"src":"images/rank1.jpg","info":"（2013年 老酒）58°金门高粱小白金龙300ml","price":"￥569.00"},
+    {"src":"images/rank3.jpg","info":"52°茅台集团白金原浆酒（龙腾四海）500ml*4","price":"￥569.00"},
+    {"src":"images/rank1.jpg","info":"52°水井坊小水井500ml","price":"￥569.00"},
+    {"src":"images/rank1.jpg","info":"52°茅台集团白金原浆酒（龙腾四海）500ml*4","price":"￥569.00"},
+    {"src":"images/rank2.jpg","info":"52°水井坊小水井500ml","price":"￥569.00"}
+  ]
+}
+

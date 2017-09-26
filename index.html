@@ -4,9 +4,12 @@
 	<title>酒仙网</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<link rel="stylesheet" type="text/css" href="css/hover-min.css">
 	<script type="text/javascript" src="js/index.js"></script>
 	<script type="text/javascript" src="js/move.js"></script>
 	<script type="text/javascript" src="js/data.js"></script>
+	<script type="text/javascript" src="js/imgSwitch.min.js"></script>
+
 </head>
 <body>
 	<div class="header">
@@ -120,6 +123,25 @@
 				<div class="search">
 					<input type="text" class="search_txt">
 					<input type="button" value="搜索" class="search_btn">
+					<div class="searchFinal">
+						<ul>
+							<!--<li class="Final_item">
+								<a href="" class="clearfix">
+									<span class="fl">黄金酒</span>
+									<em class="fr">约<b>68</b>件商品</em>
+								</a>
+							</li>
+							<li class="Final_item">
+								<a href="" class="clearfix">
+									<span class="fl">黄金酒</span>
+									<em class="fr"></em>
+								</a>
+							</li>-->
+						</ul>
+						<div class="close_dot">
+							<span></span>
+						</div>
+					</div>
 				</div>
 				<ul class="search_tig clearfix">
 					<li class="fl">
@@ -588,7 +610,7 @@
 							</dl> 
 							<dl class="menuItem clearfix">
 								<dt class="menuItem_title fl">价位</dt>
-								<dd class="menuItem_cen fl">
+								<dd class="menuItem_cen fl" style="height: 400px">
 									<ol class="clearfix">
 										<li class="fl">
 											<a href="">名庄名窖</a>
@@ -661,7 +683,7 @@
 							<dl class="menuItem clearfix">
 								<dt class="menuItem_title fl">名庄推荐</dt>
 								<dd class="menuItem_cen fl">
-									<ol class="clearfix">
+									<ol class="clearfix" style="height: 400px">
 										<li class="fl">
 											<a href="">名庄名窖</a>
 											<a href="" class="hot">名庄特买</a>		 
@@ -714,7 +736,7 @@
 							</dl> 
 							<dl class="menuItem clearfix">
 								<dt class="menuItem_title fl">价位</dt>
-								<dd class="menuItem_cen fl">
+								<dd class="menuItem_cen fl" style="height: 400px">
 									<ol class="clearfix">
 										<li class="fl">
 											<a href="">名庄名窖</a>
@@ -762,7 +784,7 @@
 							</dl> 
 							<dl class="menuItem clearfix">
 								<dt class="menuItem_title fl">价位</dt>
-								<dd class="menuItem_cen fl">
+								<dd class="menuItem_cen fl" style="height: 400px">
 									<ol class="clearfix">
 										<li class="fl">
 											<a href="">名庄名窖</a>
@@ -810,7 +832,7 @@
 							</dl> 
 							<dl class="menuItem clearfix">
 								<dt class="menuItem_title fl">价位</dt>
-								<dd class="menuItem_cen fl">
+								<dd class="menuItem_cen fl" style="height: 400px">
 									<ol class="clearfix">
 										<li class="fl">
 											<a href="">名庄名窖</a>
@@ -1013,17 +1035,17 @@
 					</div>
 				</div>
 				<ul class="place clearfix">
-					<li class="item">
+					<li class="item hvr-float-shadow">
 						<a href="">
 							<img src="images/recom1.png">
 						</a>
 					</li>
-					<li class="item">
+					<li class="item hvr-float-shadow">
 						<a href="">
 							<img src="images/recom2.png">
 						</a>
 					</li>
-					<li class="item">
+					<li class="item hvr-float-shadow">
 						<a href="">
 							<img src="images/recom3.png">
 						</a>
@@ -1279,28 +1301,14 @@
 					<div class="floor_box">
 						<div class="floor_center clearfix">
 							<div class="frCen_l fl">
-								<ul>
-									<li>
-										<a href="">
-											<img src="images/floor1_01.jpg">
-										</a>
-									</li>
-									<li>
-										<a href="">
-											<img src="images/floor1_02.jpg">
-										</a>
-									</li>
-									<li>
-										<a href="">
-											<img src="images/floor1_03.jpg">
-										</a>
-									</li>
-									<li>
-										<a href="">
-											<img src="images/floor1_04.jpg">
-										</a>
-									</li>
-								</ul>
+								<div class="sub_banner" id="imgContainer">
+									<img src="images/floor1_01.jpg">
+									<img src="images/floor1_02.jpg">
+									<img src="images/floor1_03.jpg">
+									<img src="images/floor1_04.jpg">
+									<img src="images/floor1_05.jpg">
+									<img src="images/floor1_06.jpg">
+								</div>
 							</div>
 							<ul class="frCen_r fr">
 
@@ -1587,28 +1595,12 @@
 					<div class="floor_box">
 						<div class="floor_center clearfix">
 							<div class="frCen_l fl">
-								<ul>
-									<li>
-										<a href="">
-											<img src="images/floor1_01.jpg">
-										</a>
-									</li>
-									<li>
-										<a href="">
-											<img src="images/floor1_02.jpg">
-										</a>
-									</li>
-									<li>
-										<a href="">
-											<img src="images/floor1_03.jpg">
-										</a>
-									</li>
-									<li>
-										<a href="">
-											<img src="images/floor1_04.jpg">
-										</a>
-									</li>
-								</ul>
+								<div class="sub_banner" id="imgContaine1">
+									<img src="images/floor1_06.jpg">
+									<img src="images/floor1_02.jpg">
+									<img src="images/floor1_03.jpg">
+									<img src="images/floor1_04.jpg">
+								</div>
 							</div>
 							<ul class="frCen_r fr">
 
@@ -1779,7 +1771,7 @@
 								<ul>
 									<li>
 										<a href="">
-											<img src="images/floor1_01.jpg">
+											<img src="images/floor1_04.jpg">
 										</a>
 									</li>
 									<li>
@@ -1959,7 +1951,7 @@
 								<ul>
 									<li>
 										<a href="">
-											<img src="images/floor1_01.jpg">
+											<img src="images/floor1_05.jpg">
 										</a>
 									</li>
 									<li>
@@ -2665,7 +2657,7 @@
 						</div>
 						<div class="input fl">
 							<span>你好！请<a href="input.html">登录</a></span>
-							<div class="vip">
+							<div class="vip" style="display:none">
 								<p><a href="">,你好</a></p>
 								<p><a href="">酒虫会员</a></p>
 								<p><a href="">会员</a></p>
@@ -2757,6 +2749,7 @@
 	</div>
 	<div class="mask_ad">
 		<img src="images/ad.png">
+		<canvas id="canvas"></canvas>
 	</div>
 </body>
 </html>
