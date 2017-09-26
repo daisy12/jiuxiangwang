@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <title></title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/public.css" rel="stylesheet">
+    <link href="css/register.css" rel="stylesheet">
+    <script src="js/register.js" charset="GB2312"></script>
+    <script src="js/move.js"></script>
+</head>
+<body>
+<div class="container-fluid wrap">
+    <div class="container header">
+        <div class="row">
+            <div class="col-md-6 logo">
+                <a href="index.html">
+                    <img src="images/logo.png">
+                </a>
+                <img src="images/slogan.jpg">
+            </div>
+            <div class="col-md-6 login clearfix">
+                <div class="fr help">
+                    <div class="title">帮助中心</div>
+                    <div class="des">
+                        <ul>
+                            <li>
+                                <a href="">配送说明</a>
+                            </li>
+                            <li>
+                                <a href="">支付方式</a>
+                            </li>
+                            <li>
+                                <a href="">售后服务</a>
+                            </li>
+                            <li>
+                                <a href="">企业客户</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="fr register">
+                    <span>欢迎来到酒仙网！</span>
+                    <a href="input.html">请登录</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid content">
+    <div class="container">
+        <div class="content_box">
+            <div class="register_wrap">
+                <div class="register_btn">
+                    <a href="javascript:void(0);" class="active">个人用户注册</a>
+                    <a href="javascript:void(0);">企业用户注册</a>
+                </div>
+
+                <ul class="changeStatus">
+                    <li class="item" style="display: block;">
+                        <div class="register_box">
+                            <form>
+                                <div class="frame tel">
+                                    <label class="fl">手机号</label>
+                                    <div class="tig">
+                                        <span class="icon">
+                                            <i class="userIcon"></i>
+                                        </span>
+                                        <span class="judge" style="display: block"></span>
+                                        <span class="judgeDel" style="display:block;"></span>
+                                    </div>
+                                    <input type="text" class="input_item tel_item fr">
+                                    <div class="validate" style="display: none">
+                                        请输入手机号
+                                    </div>
+                                    <div class="msg" style="display: block">
+                                        请输入11位手机号
+                                    </div>
+                                </div>
+                                <div class="frame test">
+                                    <label class="fl">验证码</label>
+                                    <div class="tig">
+                                        <span class="icon">
+                                            <i class="userIcon"></i>
+                                        </span>
+                                        <span class="indentify">ABCD</span>
+                                    </div>
+                                    <input type="text" class="input_item test_item fr">
+                                    <div class="validate">
+                                        请输入验证码
+                                    </div>
+                                </div>
+                                <div class="frame getTest">
+                                    <label class="fl">校验码</label>
+                                    <div class="tig">
+                                        <span class="icon">
+                                            <i class="userIcon"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="input_item num_item" disabled>
+                                    <button class="getNum fr">获取短信验证码</button>
+                                </div>
+                                <div class="frame pass">
+                                    <label class="fl">设置密码</label>
+                                    <div class="tig">
+                                        <span class="icon">
+                                            <i class="userIcon"></i>
+                                        </span>
+                                        <span class="judge" style="display: block"></span>
+                                        <span class="judgeDel" style="display:block;"></span>
+                                    </div>
+                                    <input type="text" class="input_item tel_item fr">
+                                    <div class="validate" style="display: none">
+                                        请输入密码
+                                    </div>
+                                    <div class="msg" style="display: block">
+                                        8-20位字符，数字、字母、符号至少包含两种
+                                    </div>
+                                </div>
+                                <div class="frame rePass">
+                                    <label class="fl">确认密码</label>
+                                    <div class="tig">
+                                        <span class="icon">
+                                            <i class="userIcon"></i>
+                                        </span>
+                                        <span class="judge" style="display: block"></span>
+                                        <span class="judgeDel" style="display:block;"></span>
+                                    </div>
+                                    <input type="text" class="input_item tel_item fr">
+                                    <div class="validate" style="display: none">
+                                        请再次确认密码
+                                    </div>
+                                    <div class="msg" style="display: block">
+                                        请输入11位手机号
+                                    </div>
+                                </div>
+                                <div class="login_link clearfix">
+                                    <input type="checkbox" id="autoLogin" class="fl">
+                                    <p class="fl">我已阅读并同意<a href="">《酒仙网用户注册协议》</a></p>
+                                </div>
+                                <div class="submit">
+                                    <button>立即注册</button>
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+                    <li class="item" style="display: none;">
+                        <div class="register_box">
+                            <form>
+                                <div class="company_title clearfix">
+                                    <h4 class="fl">账户信息</h4>
+                                    <p class="fl">（*为必填项，请确认填写正确。）</p>
+                                </div>
+                                <div class="frame tel">
+                                    <label class="fl">手机号</label>
+                                    <div class="tig">
+                                            <span class="icon">
+                                                <i class="userIcon"></i>
+                                            </span>
+                                        <span class="judge" style="display: block"></span>
+                                        <span class="judgeDel" style="display:block;"></span>
+                                    </div>
+                                    <input type="text" class="input_item tel_item fr">
+                                    <div class="validate" style="display: none">
+                                        请输入手机号
+                                    </div>
+                                    <div class="msg" style="display: block">
+                                        请输入11位手机号
+                                    </div>
+                                    <span class="require">*</span>
+                                </div>
+                                <div class="frame tel">
+                                    <label class="fl">邮箱</label>
+                                    <div class="tig">
+                                            <span class="icon">
+                                                <i class="userIcon"></i>
+                                            </span>
+                                        <span class="judge" style="display: block"></span>
+                                        <span class="judgeDel" style="display:block;"></span>
+                                    </div>
+                                    <input type="text" class="input_item tel_item fr">
+                                    <div class="validate" style="display: none">
+                                        请输入邮箱
+                                    </div>
+                                    <div class="msg" style="display: block">
+                                        请输入11位手机号
+                                    </div>
+                                    <span class="require">*</span>
+                                </div>
+                                <div class="frame pass">
+                                    <label class="fl">设置密码</label>
+                                    <div class="tig">
+                                        <span class="icon">
+                                            <i class="userIcon"></i>
+                                        </span>
+                                        <span class="judge" style="display: block"></span>
+                                        <span class="judgeDel" style="display:block;"></span>
+                                    </div>
+                                    <input type="text" class="input_item tel_item fr">
+                                    <div class="validate" style="display: none">
+                                        请输入密码
+                                    </div>
+                                    <div class="msg" style="display: block">
+                                        8-20位字符，数字、字母、符号至少包含两种
+                                    </div>
+                                </div>
+                                <div class="frame rePass">
+                                    <label class="fl">确认密码</label>
+                                    <div class="tig">
+                                        <span class="icon">
+                                            <i class="userIcon"></i>
+                                        </span>
+                                        <span class="judge" style="display: block"></span>
+                                        <span class="judgeDel" style="display:block;"></span>
+                                    </div>
+                                    <input type="text" class="input_item tel_item fr">
+                                    <div class="validate" style="display: none">
+                                        请再次确认密码
+                                    </div>
+                                    <div class="msg" style="display: block">
+                                        请输入11位手机号
+                                    </div>
+                                </div>
+                                <div class="company_title clearfix">
+                                    <h4 class="fl">公司信息</h4>
+                                    <p class="fl">（*为必填项，请确认填写正确。）</p>
+                                </div>
+                                <div class="frame">
+                                    <label class="fl">联系人姓名</label>
+                                    <div class="tig">
+                                            <span class="icon">
+                                                <i class="userIcon"></i>
+                                            </span>
+                                        <span class="judge" style="display: block"></span>
+                                        <span class="judgeDel" style="display:block;"></span>
+                                    </div>
+                                    <input type="text" class="input_item fr">
+                                    <div class="validate" style="display: none">
+                                        请输入手机号
+                                    </div>
+                                    <div class="msg" style="display: block">
+                                        请输入11位手机号
+                                    </div>
+                                    <span class="require">*</span>
+                                </div>
+                                <div class="frame">
+                                    <label class="fl">手机号</label>
+                                    <div class="tig">
+                                            <span class="icon">
+                                                <i class="userIcon"></i>
+                                            </span>
+                                        <span class="judge" style="display: block"></span>
+                                        <span class="judgeDel" style="display:block;"></span>
+                                    </div>
+                                    <input type="text" class="input_item fr">
+                                    <div class="validate" style="display: none">
+                                        请输入手机号
+                                    </div>
+                                    <div class="msg" style="display: block">
+                                        请输入11位手机号
+                                    </div>
+                                    <span class="require">*</span>
+                                </div>
+                                <div class="frame">
+                                    <label class="fl">联系电话</label>
+                                    <div class="tig">
+                                            <span class="icon">
+                                                <i class="userIcon"></i>
+                                            </span>
+                                        <span class="judge" style="display: block"></span>
+                                        <span class="judgeDel" style="display:block;"></span>
+                                    </div>
+                                    <input type="text" class="input_item fr">
+                                    <div class="validate" style="display: none">
+                                        请输入手机号
+                                    </div>
+                                    <div class="msg" style="display: block">
+                                        请输入11位手机号
+                                    </div>
+                                    <span class="require">*</span>
+                                </div>
+                                <div class="frame">
+                                    <label class="fl">公司名称</label>
+                                    <div class="tig">
+                                            <span class="icon">
+                                                <i class="userIcon"></i>
+                                            </span>
+                                        <span class="judge" style="display: block"></span>
+                                        <span class="judgeDel" style="display:block;"></span>
+                                    </div>
+                                    <input type="text" class="input_item fr">
+                                    <div class="validate" style="display: none">
+                                        请输入手机号
+                                    </div>
+                                    <div class="msg" style="display: block">
+                                        请输入11位手机号
+                                    </div>
+                                    <span class="require">*</span>
+                                </div>
+                                <div class="frame address">
+                                    <label class="fl">公司所在地</label>
+                                    <div class="validate" style="display: none">
+                                        请输入公司所在地
+                                    </div>
+                                    <div class="selectboxs fr">
+                                        <select class="province">
+                                            <option>请选择</option>
+                                        </select>
+                                        <select class="city">
+                                            <option>请选择</option>
+                                        </select>
+                                        <select class="district">
+                                            <option>请选择</option>
+                                        </select>
+                                    </div>
+                                    <span class="require">*</span>
+                                </div>
+                                <div class="frame detailAdr">
+                                    <label class="fl">详细地址</label>
+                                    <div class="tig">
+                                            <span class="icon">
+                                                <i class="userIcon"></i>
+                                            </span>
+                                        <span class="judge" style="display: block"></span>
+                                        <span class="judgeDel" style="display:block;"></span>
+                                    </div>
+                                    <input type="text" class="input_item fr">
+                                    <div class="validate" style="display: none">
+                                        请输入手机号
+                                    </div>
+                                    <div class="msg" style="display: block">
+                                        请输入11位手机号
+                                    </div>
+                                    <span class="require">*</span>
+                                </div>
+                                <div class="frame test">
+                                    <label class="fl">验证码</label>
+                                    <div class="tig">
+                                        <span class="icon">
+                                            <i class="userIcon"></i>
+                                        </span>
+                                        <span class="indentify">ABCD</span>
+                                    </div>
+                                    <input type="text" class="input_item test_item fr">
+                                    <div class="validate">
+                                        请输入验证码
+                                    </div>
+                                </div>
+                                <div class="login_link clearfix">
+                                    <input type="checkbox" id="autoLogin" class="fl">
+                                    <p class="fl">我已阅读并同意<a href="">《酒仙网用户注册协议》</a></p>
+                                </div>
+                                <div class="submit">
+                                    <button>立即注册</button>
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container footer">
+    <p class="copy">&copy;酒仙网 2011 jiuxian.com All Rights Reserved 京ICP备17043395号 京公网安备1101050188221</p>
+    <p class="tig">购买前请确认达到法定饮酒年龄！酒仙网不销售任何含酒精产品给18岁以下人士！</p>
+</div>
+</body>

@@ -1,0 +1,120 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.clearfix{
+    *zoom:1;
+}
+.clearfix:after{
+    content: "";
+    display: block;
+    clear: both;
+}
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+
+/*Í·²¿**/
+.container .row{
+    margin:0 auto;
+    width: 86%;
+    height: 88px;
+    padding: 15px 0px;
+}
+.header .login{
+    margin-top:20px;
+}
+.header .help{
+    position: relative;
+    border:1px solid #fff;
+}
+.header .help .title{
+    color: #555;
+    font-size: 12px;
+    line-height: 24px;
+    height: 24px;
+    padding-left: 10px;
+    cursor: pointer;
+}
+.header .help .title:after{
+    content: "";
+    margin-left: 6px;
+    display: inline-block;
+    width: 17px;
+    height: 14px;
+    background: url('../images/regLogin.png') no-repeat -22px 0px;
+    vertical-align: middle;
+}
+.header .help .des{
+    position: absolute;
+    top:24px;
+    left: -1px;
+    width: 83px;
+    display: none;
+    border:1px solid #ccc;
+    border-top:none;
+    z-index: 2;
+}
+.header .help .des>ul{
+    margin-bottom: 0;
+}
+.header .help .des li{
+    line-height: 24px;
+    border-top: 1px dotted #ccc;
+    height: 24px;
+    background: #fff;
+    padding-left: 10px;
+    list-style: none;
+}
+.header .help .des li>a{
+    font-size: 12px;
+    color: #999;
+}
+.header .register{
+    font-size: 12px;
+    color: #666;
+    line-height: 24px;
+    height: 24px;
+}
+.header .register{
+    margin-right: 30px;
+}
+.header .register span{
+    margin-right: 20px;
+}
+.header .logo a{
+    display: inline-block;
+    width: 137px;
+    height: 65px;
+    margin:0 auto
+}
+.header .logo img{
+    display: inline-block;
+}
+@media only screen and (max-width:678px){
+    .login .help{
+        float: left;
+    }
+
+}
+
+/*µ×²¿*/
+.footer{
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+.footer .copy{
+    font-size: 12px;
+    color: #555;
+    text-align: center;
+    line-height: 20px;
+}
+.footer .tig{
+    font-size: 12px;
+    color:#ff0000;
+    text-align: center;
+    line-height: 20px;
+}

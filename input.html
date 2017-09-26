@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/public.css" rel="stylesheet">
+    <link href="css/input.css" rel="stylesheet">
+    <script src="js/jquery-1.11.1.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/input.js"></script>
+    <script src="js/move.js"></script>
+</head>
+<body>
+    <div class="container header">
+        <div class="row">
+            <div class="col-md-6 logo">
+                <a href="index.html">
+                    <img src="images/logo.png">
+                </a>
+                <img src="images/slogan.jpg">
+            </div>
+            <div class="col-md-6 login clearfix">
+                <div class="fr help">
+                    <div class="title">帮助中心</div>
+                    <div class="des">
+                        <ul>
+                            <li>
+                                <a href="">配送说明</a>
+                            </li>
+                            <li>
+                                <a href="">支付方式</a>
+                            </li>
+                            <li>
+                                <a href="">售后服务</a>
+                            </li>
+                            <li>
+                                <a href="">企业客户</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="fr register">
+                    <span>欢迎来到酒仙网！</span>
+                    <a href="register.html">免费注册</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="container-fluid content">
+        <div class="container">
+            <div class=" content_box">
+                <div class="col-md-12 input-box">
+                    <div class="login-con" style="display: block;">
+                        <div class="login_top">
+                            <a href="javascript:void(0);">账号登录</a>
+                            <span>|</span>
+                            <a href="javascript:void(0);" class="active">手机动态密码登录</a>
+                        </div>
+                        <div class="login_type">
+                            <div class="loginUser type_item" style="display:none">
+                                <div class="frame tel">
+                                    <div class="tig">
+                                        <span class="icon">
+                                            <i class="userIcon"></i>
+                                        </span>
+                                        <p class="placeholder">用户名/邮箱/手机号</p>
+                                        <span class="judge" style="display: none"></span>
+                                        <span class="judgeDel" style="display:none;"></span>
+                                    </div>
+                                    <input type="text" class="input_item tel_item">
+                                    <div class="validate">
+                                        请输入用户名/邮箱/手机号
+                                    </div>
+                                </div>
+                                <div class="frame pass">
+                                    <div class="tig">
+                                        <span class="icon">
+                                            <i class="userIcon"></i>
+                                        </span>
+                                        <p class="placeholder">密码</p>
+                                        <span class="judge" style="display: none"></span>
+                                        <span class="judgeDel" style="display:none;"></span>
+                                    </div>
+                                    <input type="text" class="input_item pass_item">
+                                    <div class="validate">
+                                        请输入密码
+                                    </div>
+                                </div>
+                                <div class="frame test">
+                                    <div class="tig">
+                                        <span class="icon">
+                                            <i class="userIcon"></i>
+                                        </span>
+                                        <p class="placeholder">验证码</p>
+                                        <span class="indentify">ABCD</span>
+                                    </div>
+                                    <input type="text" class="input_item test_item">
+                                    <div class="validate">
+                                        请输入验证码
+                                    </div>
+                                </div>
+                                <div class="submit">
+                                    <button>登录</button>
+                                </div>
+                                <div class="login_link clearfix">
+                                    <input type="checkbox" id="autoLogin">
+                                    <label for="autoLogin">自动登录</label>
+
+                                    <a href="" class="fr">找回密码</a>
+                                    <a href="" class="fr">免费注册</a>
+                                </div>
+                                <div class="parner clearfix">
+                                    <span class="title fl">使用合作账号登录</span>
+                                    <ul class="parner_icon fr clearfix">
+                                        <li>
+                                            <a href=""></a>
+                                        </li>
+                                        <li>
+                                            <a href=""></a>
+                                        </li>
+                                        <li>
+                                            <a href=""></a>
+                                        </li>
+                                        <li>
+                                            <a href=""></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="loginMobile type_item" style="display: block">
+                                <div class="frame tel">
+                                    <div class="tig">
+                                        <span class="icon">
+                                            <i class="userIcon"></i>
+                                        </span>
+                                        <p class="placeholder">手机号</p>
+                                        <span class="judge" style="display: none"></span>
+                                        <span class="judgeDel" style="display:none;"></span>
+                                    </div>
+                                    <input type="text" class="input_item tel_item">
+                                    <div class="validate">
+                                        请输入手机号
+                                    </div>
+                                </div>
+                                <div class="frame test">
+                                    <div class="tig">
+                                        <span class="icon">
+                                            <i class="userIcon"></i>
+                                        </span>
+                                        <p class="placeholder">验证码</p>
+                                        <span class="indentify">ABCD</span>
+                                    </div>
+                                    <input type="text" class="input_item test_item">
+                                    <div class="validate">
+                                        请输入验证码
+                                    </div>
+                                </div>
+                                <div class="frame getTest">
+                                    <div class="tig">
+                                        <span class="icon">
+                                            <i class="userIcon"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="input_item num_item" disabled>
+                                    <button class="getNum fr">获取短信验证码</button>
+                                </div>
+                                <div class="submit">
+                                    <button>登录</button>
+                                </div>
+                                <div class="login_link clearfix">
+                                    <input type="checkbox" id="autoLogin">
+                                    <label for="autoLogin">自动登录</label>
+
+                                    <a href="" class="fr">找回密码</a>
+                                    <a href="" class="fr">免费注册</a>
+                                </div>
+                                <div class="parner clearfix">
+                                    <span class="title fl">使用合作账号登录</span>
+                                    <ul class="parner_icon fr clearfix">
+                                        <li>
+                                            <a href=""></a>
+                                        </li>
+                                        <li>
+                                            <a href=""></a>
+                                        </li>
+                                        <li>
+                                            <a href=""></a>
+                                        </li>
+                                        <li>
+                                            <a href=""></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="login-con" style="display:none">
+                        <div class="scan_top">
+                            <h2>扫码登录</h2>
+                        </div>
+                        <div class="scan_box">
+
+                            <div class="scanImg">
+                                <img src="images/scancode.jpg">
+                            </div>
+                            <div class="phoneImg">
+                                <img src="images/tip1.png">
+                            </div>
+
+                        </div>
+                        <div class="openApp clearfix">
+                            <i class="icon fl"></i>
+                            <p class="fl">
+                                打开
+                                <em>手机酒仙APP</em><br>
+                                扫描二维码
+                            </p>
+                        </div>
+                        <div class="scan_btm">
+                            <a href="">账号密码登录</a>
+                            <a href="">免费注册</a>
+                        </div>
+                    </div>
+                    <span class="changeBy"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container footer">
+        <p class="copy">&copy;酒仙网 2011 jiuxian.com All Rights Reserved 京ICP备17043395号 京公网安备1101050188221</p>
+        <p class="tig">购买前请确认达到法定饮酒年龄！酒仙网不销售任何含酒精产品给18岁以下人士！</p>
+    </div>
+</body>
+</html>
